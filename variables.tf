@@ -18,13 +18,21 @@ EOT
     resource_group_name       = string
     script                    = string
     stream_analytics_job_name = string
-    input = object({
-      configuration_parameter = optional(bool, false)
+    input = list(object({
+      configuration_parameter = optional(bool) # Default: false
       type                    = string
-    })
+    }))
     output = object({
       type = string
     })
   }))
+  validation {
+    condition = alltrue([
+      for k, v in var.stream_analytics_function_javascript_udfs : (
+        length(v.input) >= 1
+      )
+    ])
+    error_message = "Each input list must contain at least 1 items"
+  }
 }
 
