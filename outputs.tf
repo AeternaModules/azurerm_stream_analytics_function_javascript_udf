@@ -1,3 +1,7 @@
+output "stream_analytics_function_javascript_udfs_id" {
+  description = "Map of id values across all stream_analytics_function_javascript_udfs, keyed the same as var.stream_analytics_function_javascript_udfs"
+  value       = { for k, v in azurerm_stream_analytics_function_javascript_udf.stream_analytics_function_javascript_udfs : k => v.id }
+}
 output "stream_analytics_function_javascript_udfs_input" {
   description = "Map of input values across all stream_analytics_function_javascript_udfs, keyed the same as var.stream_analytics_function_javascript_udfs"
   value       = { for k, v in azurerm_stream_analytics_function_javascript_udf.stream_analytics_function_javascript_udfs : k => v.input }
