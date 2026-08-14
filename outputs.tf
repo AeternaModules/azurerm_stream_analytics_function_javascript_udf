@@ -12,7 +12,7 @@ output "stream_analytics_function_javascript_udfs_name" {
 }
 output "stream_analytics_function_javascript_udfs_output" {
   description = "Map of output values across all stream_analytics_function_javascript_udfs, keyed the same as var.stream_analytics_function_javascript_udfs"
-  value       = { for k, v in azurerm_stream_analytics_function_javascript_udf.stream_analytics_function_javascript_udfs : k => v.output if v.output != null && length(v.output) > 0 }
+  value       = { for k, v in azurerm_stream_analytics_function_javascript_udf.stream_analytics_function_javascript_udfs : k => one(v.output) if v.output != null && length(v.output) > 0 }
 }
 output "stream_analytics_function_javascript_udfs_resource_group_name" {
   description = "Map of resource_group_name values across all stream_analytics_function_javascript_udfs, keyed the same as var.stream_analytics_function_javascript_udfs"
